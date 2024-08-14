@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <!-- Slick Carousel CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+
+    <!-- Slick Carousel JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+    <title>Film | Malva</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__content">
+        <div class="logo"><a href="#">Malva</a></div>
+        <label for="check" class="checkbox">
+          <i class="ri-menu-line"></i>
+        </label>
+        <input type="checkbox" name="check" id="check" />
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="film.html" class="active">Film</a></li>
+          <li><a href="tokoh.html">Tokoh</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="section">
+      <div class="section__container">
+        <div class="content">
+          <h1 class="title">
+            <br /><br />
+            Film Terbaik
+          </h1>
+          <p class="description">
+            Temukan film-film terbaik yang telah saya tonton dan ulas. Setiap
+            film memiliki keunikan tersendiri yang akan menginspirasi dan
+            memukau Anda.
+          </p>
+          <div class="film-grid">
+            <div class="film-card">
+              <img src="assets/film1.jpg" alt="Film 1" />
+              <h3>Guardians of the Galaxy</h3>
+              <p>
+                Guardians of the Galaxy adalah film pahlawan super Amerika
+                Serikat yang diadaptasi dari kelompok pahlawan super Guardians
+                of the Galaxy terbitan Marvel Comics. Ini adalah film kesepuluh
+                di Marvel Cinematic Universe. Film ini disutradarai dan ditulis
+                oleh James Gunn, cerita ditulis bersama Nicole Perlman.
+              </p>
+            </div>
+            <div class="film-card">
+              <img src="assets/film2.jpg" alt="Film 2" />
+              <h3>Avengers</h3>
+              <p>
+                Ketika musuh yang tak terduga muncul, mengancam keselamatan dan
+                keamanan dunia, Nick Fury, direktur Badan Perdamaian
+                Internasional, dikenal sebagai S.H.I.E.L.D. , membutuhkan tim
+                untuk menyelamatkan dunia dari bencana. Usaha perekrutan pun
+                dimulai Iron Man, Captain America, Hulk, Thor, Black Widow dan
+                Hawkeye dikumpulkan untuk menaklukkan Dewa Kehancuran, Loki,
+                dalam usahanya menghancurkan bumi. Dengan semua gabungan
+                kekuatan, tugas nampak lebih mudah. Namun kenyatannya tidak
+                demikian! Para pahlawan super justru saling melawan satu sama
+                lain Hulk melawan Captain America, siapa yang akan menang?
+                Apakah Iron Man dapat mengalahkan kekuatan super milik Thor?
+                Bagaimana para pahlawan super ini secara bersama-sama menghadapi
+                bencana, melindungi masyarakat dan yang terpenting, bertahan
+                hidup?
+              </p>
+            </div>
+            <div class="film-card">
+              <img src="assets/film3.jpg" alt="Film 3" />
+              <h3>Spider-Man</h3>
+              <p>
+                Spider-Man adalah film pahlawan super Amerika Serikat yang
+                disutradarai oleh Sam Raimi dan ditulis oleh David Koepp.
+                Didasarkan pada karakter fiksi Marvel Comics, Spider-Man
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Audio Player -->
+    <footer>
+      <div class="audio-player">
+        <button class="play-btn" id="playPauseBtn">
+          <i class="ri-pause-fill"></i>
+        </button>
+        <div class="progress-container">
+          <input
+            type="range"
+            id="progressBar"
+            class="progress-bar"
+            value="0"
+            max="100"
+          />
+        </div>
+        <button class="volume-btn">
+          <i class="ri-volume-up-fill"></i>
+        </button>
+        <audio id="myAudio" autoplay>
+          <source src="sound.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </footer>
+    <!-- JavaScript to Autoplay Audio -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var audio = document.getElementById("myAudio");
+        var playPauseBtn = document.getElementById("playPauseBtn");
+        var progressBar = document.getElementById("progressBar");
+
+        // Play/Pause button functionality
+        playPauseBtn.addEventListener("click", function () {
+          if (audio.paused) {
+            audio.play();
+            playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+          } else {
+            audio.pause();
+            playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
+          }
+        });
+
+        // Update progress bar as audio plays
+        audio.addEventListener("timeupdate", function () {
+          var progress = (audio.currentTime / audio.duration) * 100;
+          progressBar.value = progress;
+        });
+
+        // Seek functionality
+        progressBar.addEventListener("input", function () {
+          var value = progressBar.value;
+          audio.currentTime = (value / 100) * audio.duration;
+        });
+
+        // Ensure play button shows correct state if audio is already playing
+        audio.addEventListener("play", function () {
+          playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+        });
+
+        audio.addEventListener("pause", function () {
+          playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
+        });
+      });
+    </script>
+  </body>
+</html>
